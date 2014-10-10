@@ -36,12 +36,6 @@ public class Student {
 	{
 	}
 	
-	public Student(String name, int age)
-	{
-		this.name = name;
-		this.age = age;
-	}
-	
 	public void print()
 	{
 		System.out.println("This Student is: " + name + ",");
@@ -88,10 +82,56 @@ public class Test {
 
 }
 ```
+运行上述测试代码，可以得到如下结果：
+```
+This Student is: Vensent,
+This Student is 23 years old.
+```
 
 ## 疑惑
 细心的读者可能会发现在上述的例子中，如果我们直接使用`demoStudent.setName(String)`、`demoStudent.setAge(int)`、`demoStudent.print()`不就完事了么，为什么还要去用什么反射机制？劳神费力不说，getDeclaredMethod、invoke还这么复杂，稍不留神就可能用错。          
 笔者一开始也是这样想的，而且这样的想法也持续了很长的时间。到底反射机制是在什么样的情况下可以使用的？               
 而在最近写Android的代码的时候却多次碰到了这种情况。通过下面一个例子来具体说明。        
-请继续阅读：[从Java的反射机制说开去<2>](http://vensent.github.io/2014/10/10/%E4%BB%8EJava%E7%9A%84%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E8%AF%B4%E5%BC%80%E5%8E%BB-2/)。
+
+## 反射用途1——冲破private的限制
+假设我们在上述的Student代码中将两个set的方法变为private，如下所示：
+```java
+public class Student {
+
+	private String name;
+	private int age;
+	
+	public String getName() {
+		return name;
+	}
+	private void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	private void setAge(int age) {
+		this.age = age;
+	}
+	
+	public Student()
+	{
+	}
+	
+	public void print()
+	{
+		System.out.println("This Student is: " + name + ",");
+		System.out.println("This Student is " + age + " years old.");
+	}
+}
+```
+没错，看到这里读者可能有一种恍然大悟的感觉。如果将两个set方法都换成了private来修饰的话，那么name和age两个成员变量是无法通过demoStudent直接调用set方法来进行赋值的了。     
+但是我们同样执行上述Test代码依然可以得到以下相同的结果：
+```
+This Student is: Vensent,
+This Student is 23 years old.
+```
+这样做就冲破了代码中private的限制而可以调用到private方法。通过这样的方法绕过了安全的检查，好像多少有一点不安全的感觉。
+例如上述的做法在实际的操作中还有很多的，读者在自己编程中可以多留意。
+以上完成了第一节的内容，请继续阅读：[从Java的反射机制说开去<2>](http://vensent.github.io/2014/10/10/%E4%BB%8EJava%E7%9A%84%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E8%AF%B4%E5%BC%80%E5%8E%BB-2/)。
 
