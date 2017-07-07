@@ -1,6 +1,6 @@
 title: "从Java的反射机制说开去<1>"
 date: 2014-10-10 11:09:28
-tags: [java, 反射机制]
+tags: [Java, 反射机制]
 categories: Java
 ---
 最近在写Android的时候用到了一些关于Java反射机制的内容。Java的反射机制也是在面试过程中常考的，这里就好好地将它们回顾一下。
