@@ -21,6 +21,9 @@ public static void turnOnOffHotspot(Context context, boolean isTurnToOn) {
     }
 }
 ```
+
+<!-- more -->
+
 其中WifiApControl是自己写好的一个类，代码比较长，不过如果理解了反射机制的话还是很好理解的，贴下来如下：
 ```java
 /**

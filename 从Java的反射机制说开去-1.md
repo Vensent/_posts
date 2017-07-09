@@ -12,7 +12,7 @@ Java比起其他的语言，最大的特点就是“面向对象”。而怎么�
 
 ## 反射机制的Demo
 在这里只就类的函数的反射来说明一下。          
-先是一个自己写的Student类，无须赘述：        
+先是一个自己写的Student类，无须赘述：        <!-- more -->
 ```java
 public class Student {
 
