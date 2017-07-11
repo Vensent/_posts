@@ -1,4 +1,4 @@
-title: "从Java的反射机制说开去<1>"
+title: "从Java的反射机制说开去-1"
 date: 2014-10-10 11:09:28
 tags: [Java, 反射机制]
 categories: Java
